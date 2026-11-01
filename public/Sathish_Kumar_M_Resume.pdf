@@ -1,0 +1,85 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 4566 >>
+stream
+BT 0 0 0 rg /F2 21 Tf 1 0 0 1 56 756 Tm (SATHISH KUMAR M) Tj ET
+BT 0.05 0.35 0.55 rg /F2 10.5 Tf 1 0 0 1 56 739 Tm (Computer Science Engineering Student  |  Aspiring Software Developer  |  AI & Full-Stack Enthusiast) Tj ET
+BT 0.25 0.25 0.25 rg /F1 9 Tf 1 0 0 1 56 725 Tm (Email: mksathish64@gmail.com) Tj ET
+BT 0.25 0.25 0.25 rg /F1 9 Tf 1 0 0 1 56 713 Tm (LinkedIn: linkedin.com/in/sathishkumar-m-708000329    GitHub: profile link to be added) Tj ET
+BT 0.05 0.35 0.55 rg /F2 11.5 Tf 1 0 0 1 56 693 Tm (PROFILE) Tj ET
+0.75 0.85 0.95 RG 0.7 w 56 688 m 556 688 l S
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 56 674 Tm (Third-year B.E. Computer Science and Engineering student interested in software development and emerging) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 56 662 Tm (technologies. Enjoys exploring programming concepts, developing applications, solving logical problems and) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 56 650 Tm (continuously improving technical skills through practical projects.) Tj ET
+BT 0.05 0.35 0.55 rg /F2 11.5 Tf 1 0 0 1 56 630 Tm (EDUCATION) Tj ET
+0.75 0.85 0.95 RG 0.7 w 56 625 m 556 625 l S
+BT 0 0 0 rg /F2 10 Tf 1 0 0 1 56 611 Tm (B.E. Computer Science and Engineering  \(2024 - 2028\)) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 470 611 Tm (CGPA: 9.0/10) Tj ET
+BT 0.3 0.3 0.3 rg /F1 9 Tf 1 0 0 1 66 599 Tm (PSNA College of Engineering and Technology - currently in third year) Tj ET
+BT 0 0 0 rg /F2 10 Tf 1 0 0 1 56 585 Tm (HSC - Sai Ram Matric Higher Secondary School  \(2024\)) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 505 585 Tm (92%) Tj ET
+BT 0 0 0 rg /F2 10 Tf 1 0 0 1 56 571 Tm (SSLC - Sai Ram Matric Higher Secondary School  \(2022\)) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 505 571 Tm (90%) Tj ET
+BT 0.05 0.35 0.55 rg /F2 11.5 Tf 1 0 0 1 56 551 Tm (TECHNICAL SKILLS) Tj ET
+0.75 0.85 0.95 RG 0.7 w 56 546 m 556 546 l S
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 532 Tm (Programming Languages: ) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 172 532 Tm (C , Java , Python) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 519 Tm (Web Technologies: ) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 157 519 Tm (HTML , CSS) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 506 Tm (Tools & Platforms: ) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 160 506 Tm (VS Code, Git & GitHub , Linux ) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 493 Tm (Concepts: ) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 121 493 Tm (OOP Concepts , Data Structures \(Arrays and Strings\)) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 480 Tm (Soft Skills: ) Tj ET
+BT 0.15 0.15 0.15 rg /F1 9.5 Tf 1 0 0 1 126 480 Tm (Problem Solving, Teamwork & Collaboration, Time Management, Adaptability, Self-Motivation) Tj ET
+BT 0.05 0.35 0.55 rg /F2 11.5 Tf 1 0 0 1 56 460 Tm (PROJECTS) Tj ET
+0.75 0.85 0.95 RG 0.7 w 56 455 m 556 455 l S
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 441 Tm (Fruit CNN Classifier) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 429 Tm (-  CNN-based image classification app - Apple / Mango / Orange. Python, TensorFlow, HTML, CSS, JavaScript.) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 414 Tm (Student Management System) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 402 Tm (-  Java application to manage student details using object-oriented programming concepts.) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 387 Tm (JavaFX Desktop Application) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 375 Tm (-  GUI-based desktop application exploring UI components and event handling.) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 360 Tm (To-Do List API) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 348 Tm (-  RESTful CRUD API in Python, endpoints tested with Postman.) Tj ET
+BT 0 0 0 rg /F2 9.5 Tf 1 0 0 1 56 333 Tm (Student Alarm & Reminder App) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 321 Tm (-  Android alarm and reminder application built with Java.) Tj ET
+BT 0.05 0.35 0.55 rg /F2 11.5 Tf 1 0 0 1 56 301 Tm (CERTIFICATIONS & LEARNING) Tj ET
+0.75 0.85 0.95 RG 0.7 w 56 296 m 556 296 l S
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 282 Tm (-  Java Programming - Oracle Academy) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 269 Tm (-  Python Programming - Cisco Academy) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 256 Tm (-  Android Development - Student Alarm & Reminder Application) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 243 Tm (-  JavaFX Application Development) Tj ET
+BT 0 0 0 rg /F1 9.5 Tf 1 0 0 1 66 230 Tm (-  Web Development / API Testing - To-Do List API using Python and Postman) Tj ET
+BT 0.45 0.45 0.45 rg /F1 8 Tf 1 0 0 1 56 207 Tm (Portfolio: sathishkumar-m  |  Generated from the interactive Skills Factory portfolio.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000004869 00000 n 
+0000004939 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+5014
+%%EOF
