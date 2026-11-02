@@ -142,10 +142,9 @@ export default function SkillsFactory() {
         <div ref={pathRef} className="factory-path relative mx-auto mt-20 max-w-4xl">
           <div className="mb-10 text-center">
             <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-cyanx/70">Assembly Sequence</p>
-            <h3 className="mt-2 font-display text-2xl font-bold text-slate-100">Skills on the Production Line</h3>
-            <p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-slate-500">
+            <h3 className="mx-auto mt-2 max-w-xl font-display text-2xl font-bold leading-relaxed text-slate-100">
               Scroll through each workstation to bring its skill module online.
-            </p>
+            </h3>
           </div>
 
           <span className="factory-path__rail absolute left-5 top-32 h-[calc(100%-8rem)] w-px bg-white/[0.08] md:left-1/2" />
