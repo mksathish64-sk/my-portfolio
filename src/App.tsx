@@ -11,6 +11,7 @@ import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
+import PortfolioLikes from "./components/PortfolioLikes";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Certifications />
           <Education />
           <Contact />
+          <PortfolioLikes />
         </main>
         <Footer />
       </motion.div>

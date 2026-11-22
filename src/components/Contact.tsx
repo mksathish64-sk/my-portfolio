@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Copy, Check, Mail, Send, Radio, Lock } from "lucide-react";
 import { Reveal, SectionHeading } from "./ui";
 import { GithubIcon, LinkedinIcon } from "./icons";
+import { supabase } from "../lib/supabase";
 
 const EMAIL = "mksathish64@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/sathishkumar-m-708000329";
@@ -38,7 +39,7 @@ function ConnectionLines() {
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
   const copyEmail = async () => {
     try {
@@ -50,18 +51,41 @@ export default function Contact() {
     }
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = String(data.get("name") || "");
+    if (status !== "idle") return;
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const firstName = String(data.get("first_name") || "");
+    const lastName = String(data.get("last_name") || "");
     const from = String(data.get("email") || "");
+    const phoneNumber = String(data.get("phone_number") || "");
     const msg = String(data.get("message") || "");
     setStatus("sending");
-    const body = encodeURIComponent(`${msg}\n\n— ${name} (${from})`);
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`Portfolio contact — ${name}`)}&body=${body}`;
-    setTimeout(() => setStatus("done"), 900);
-    setTimeout(() => setStatus("idle"), 4200);
-    e.currentTarget.reset();
+
+    try {
+      const { error } = await supabase.from("contact_messages").insert({
+        first_name: firstName,
+        last_name: lastName,
+        email: from,
+        phone_number: phoneNumber || null,
+        message: msg,
+      });
+
+      if (error) {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4200);
+        return;
+      }
+
+      form.reset();
+      setStatus("done");
+      setTimeout(() => setStatus("idle"), 4200);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4200);
+    }
   };
 
   return (
@@ -168,17 +192,33 @@ export default function Contact() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">Your Name</span>
+                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">
+                    First Name<span className="ml-1 text-red-400" aria-hidden="true">*</span>
+                  </span>
                   <input
                     required
-                    name="name"
+                    name="first_name"
                     type="text"
-                    placeholder="Jane Recruiter"
+                    placeholder="Jane"
                     className="w-full rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-sm text-slate-100 outline-none transition-all placeholder:text-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12)]"
                   />
                 </label>
                 <label className="block">
-                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">Your Email</span>
+                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">
+                    Last Name<span className="ml-1 text-red-400" aria-hidden="true">*</span>
+                  </span>
+                  <input
+                    required
+                    name="last_name"
+                    type="text"
+                    placeholder="Recruiter"
+                    className="w-full rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-sm text-slate-100 outline-none transition-all placeholder:text-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12)]"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">
+                    Email<span className="ml-1 text-red-400" aria-hidden="true">*</span>
+                  </span>
                   <input
                     required
                     name="email"
@@ -187,9 +227,20 @@ export default function Contact() {
                     className="w-full rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-sm text-slate-100 outline-none transition-all placeholder:text-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12)]"
                   />
                 </label>
+                <label className="block">
+                  <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">Phone Number (Optional)</span>
+                  <input
+                    name="phone_number"
+                    type="tel"
+                    placeholder="+1 (555) 123-4567"
+                    className="w-full rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-sm text-slate-100 outline-none transition-all placeholder:text-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12)]"
+                  />
+                </label>
               </div>
               <label className="mt-4 block">
-                <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">Message Payload</span>
+                <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.25em] text-slate-500">
+                  Message<span className="ml-1 text-red-400" aria-hidden="true">*</span>
+                </span>
                 <textarea
                   required
                   name="message"
@@ -207,7 +258,7 @@ export default function Contact() {
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent bg-[length:200%_100%] opacity-0 transition-opacity duration-300 group-hover:animate-[kf-shimmer_1.4s_linear_infinite] group-hover:opacity-100" />
                 <Send size={15} className="relative transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 <span className="relative">
-                  {status === "idle" ? "Transmit Message" : status === "sending" ? "Opening mail channel…" : "Channel opened"}
+                  {status === "idle" ? "Transmit Message" : status === "sending" ? "Submitting message…" : status === "done" ? "Message submitted" : "Submission failed"}
                 </span>
               </button>
 
@@ -219,7 +270,17 @@ export default function Contact() {
                     exit={{ opacity: 0 }}
                     className="mt-4 font-mono text-[10.5px] tracking-wider text-emerald-300"
                   >
-                    ▸ EMAIL CLIENT LAUNCHED WITH YOUR MESSAGE — HIT SEND TO COMPLETE TRANSMISSION
+                    ▸ MESSAGE SUBMITTED SUCCESSFULLY — THANK YOU FOR REACHING OUT
+                  </motion.p>
+                )}
+                {status === "error" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-4 font-mono text-[10.5px] tracking-wider text-red-300"
+                  >
+                    ▸ MESSAGE SUBMISSION FAILED — PLEASE TRY AGAIN
                   </motion.p>
                 )}
               </AnimatePresence>
