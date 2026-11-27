@@ -1,12 +1,13 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Copy, Check, Mail, Send, Radio, Lock } from "lucide-react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { Reveal, SectionHeading } from "./ui";
 import { GithubIcon, LinkedinIcon } from "./icons";
-import { supabase } from "../lib/supabase";
 
 const EMAIL = "mksathish64@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/sathishkumar-m-708000329";
+const TURNSTILE_SITE_KEY = "0x4AAAAAAGVzZYTqsWcFXScs";
 
 function ConnectionLines() {
   return (
@@ -38,7 +39,9 @@ function ConnectionLines() {
 }
 
 export default function Contact() {
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
   const [copied, setCopied] = useState(false);
+  const [turnstileError, setTurnstileError] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
   const copyEmail = async () => {
@@ -55,6 +58,12 @@ export default function Contact() {
     e.preventDefault();
     if (status !== "idle") return;
 
+    const turnstileToken = turnstileRef.current?.getResponse();
+    if (!turnstileToken) {
+      setTurnstileError(true);
+      return;
+    }
+
     const form = e.currentTarget;
     const data = new FormData(form);
     const firstName = String(data.get("first_name") || "");
@@ -65,24 +74,32 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const { error } = await supabase.from("contact_messages").insert({
-        first_name: firstName,
-        last_name: lastName,
-        email: from,
-        phone_number: phoneNumber || null,
-        message: msg,
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: from,
+          phone_number: phoneNumber,
+          message: msg,
+          turnstileToken,
+        }),
       });
 
-      if (error) {
+      if (!response.ok) {
+        turnstileRef.current?.reset();
         setStatus("error");
         setTimeout(() => setStatus("idle"), 4200);
         return;
       }
 
       form.reset();
+      turnstileRef.current?.reset();
       setStatus("done");
       setTimeout(() => setStatus("idle"), 4200);
     } catch {
+      turnstileRef.current?.reset();
       setStatus("error");
       setTimeout(() => setStatus("idle"), 4200);
     }
@@ -249,6 +266,22 @@ export default function Contact() {
                   className="w-full resize-none rounded-xl border border-white/10 bg-ink-950/60 px-4 py-3 text-sm text-slate-100 outline-none transition-all placeholder:text-slate-600 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12)]"
                 />
               </label>
+
+              <div className="mt-6 rounded-xl border border-white/10 bg-ink-950/40 p-3">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={TURNSTILE_SITE_KEY}
+                  options={{ theme: "dark" }}
+                  onSuccess={() => setTurnstileError(false)}
+                  onError={() => setTurnstileError(true)}
+                  onExpire={() => setTurnstileError(true)}
+                />
+                {turnstileError && (
+                  <p role="alert" className="mt-2 font-mono text-[10.5px] tracking-wider text-red-300">
+                    ▸ PLEASE COMPLETE THE VERIFICATION BEFORE SENDING
+                  </p>
+                )}
+              </div>
 
               <button
                 type="submit"

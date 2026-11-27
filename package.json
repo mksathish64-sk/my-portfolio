@@ -10,6 +10,7 @@
     "generate-resume": "node scripts/make-resume.mjs"
   },
   "dependencies": {
+    "@marsidev/react-turnstile": "^1.6.3",
     "@supabase/supabase-js": "^2.119.0",
     "clsx": "2.1.1",
     "framer-motion": "^14.9.0",
